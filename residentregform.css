@@ -1,0 +1,73 @@
+h2 {
+    margin-top: 10px; /* Reduced margin */
+    color: rgb(107, 107, 107);
+}
+
+h3 {
+    margin-top: 5px; /* Reduced margin */
+    color: rgb(107, 107, 107);
+}
+
+label {
+    display: block;
+    margin-top: 5px; /* Reduced margin */
+    color: rgb(54, 54, 54);
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+input[type="file"] {
+    width: 100%;
+    padding: 6px; /* Reduced padding */
+    margin-top: 3px; /* Reduced margin */
+    margin-bottom: 5px; /* Reduced margin */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Hide the up and down arrows */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield; /* Firefox */
+}
+
+.acknowledgment {
+    display: flex;
+    align-items: center;
+    font-style: italic;
+    margin-top: 20px;
+    margin-left: 5px;
+    font-family: "Times New Roman", Times, serif; /* Set font-family to Times New Roman */
+    text-align: justify; /* Justify the text */
+}
+
+.acknowledgment label {
+    margin-left: 20px; /* Moves the label to the right */
+}
+
+
+.submit-button {
+    /* Add your custom styles here */
+    width: 100%;
+    background-color: #740e0e !important; 
+    border-color: #660c0c !important;
+    color: #fff; /* White text color */
+    padding: 15px 20px !important; /* Add padding */
+    border-radius: 30px !important; /* Add border radius */
+    font-size: 25px !important; /* Adjust font size */
+    font-weight: bold !important;
+    cursor: pointer; /* Add pointer cursor on hover */
+    margin-top: 30px;
+    position: relative;
+    z-index: 1;
+}
+
