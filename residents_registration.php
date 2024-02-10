@@ -1,24 +1,30 @@
 <?php
 // Check if form data exists
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve form data
-    $fullName = $_POST['fullName'];
-    // Retrieve other form fields similarly
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
+    // Display the form data for debugging
+    echo "Form Data:";
+    var_dump($_GET);
 
-    // Validate the data (e.g., check for empty fields, format validation)
+    // Retrieve form data
+    $fullName = $_GET['fullName'];
+    $address = $_GET['address'];
+    $phoneNumber = $_GET['phoneNumber'];
+    $emailAddress = $_GET['emailAddress'];
+    $numberOfMembers = $_GET['numberOfMembers'];
+    $emergencyContactName = $_GET['emergencyContactName'];
+    $occupation = $_GET['occupation'];
+    $communication = $_GET['communication'];
+    $acknowledgeCheckbox = isset($_GET['acknowledgeCheckbox']) ? $_GET['acknowledgeCheckbox'] : '';
 
     // Escape form data
     $fullName = htmlspecialchars($fullName);
+    $address = htmlspecialchars($address);
     // Escape other form fields similarly
-
-    // Output form data for debugging using var_dump()
-    echo "Form Data:";
-    var_dump($_POST);
 
     // Insert data into MySQL database
     $servername = "localhost";
-    $username = "username"; // Replace with your MySQL username
-    $password = "password"; // Replace with your MySQL password
+    $username = "root"; // Replace with your MySQL username
+    $password = " "; // Replace with your MySQL password
     $dbname = "residents_registration"; // Replace with your database name
 
     // Create connection
@@ -30,7 +36,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // SQL to insert data into the database
-    $sql = "INSERT INTO form_submissions (id, full_name, address, phone_number, email_address, number_of_members, emergency_contact_name, occupation, communication, acknowledged) VALUES (null, '$fullName', '$address', '$phoneNumber', '$emailAddress', '$numberOfMembers', '$emergencyContactName', '$occupation', '$communication', '$acknowledgeCheckbox')";
+    $sql = "INSERT INTO form_submissions (full_name, address, phone_number, email_address, number_of_members, emergency_contact_name, occupation, communication, acknowledged) 
+            VALUES ('$fullName', '$address', '$phoneNumber', '$emailAddress', '$numberOfMembers', '$emergencyContactName', '$occupation', '$communication', '$acknowledgeCheckbox')";
 
     // Output SQL query for debugging
     echo "SQL Query:";
@@ -46,4 +53,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 } else {
     echo "No data received from the form.";
 }
-
+?>
