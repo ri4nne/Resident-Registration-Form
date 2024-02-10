@@ -9,7 +9,7 @@
     <style>
     .background-overlay {
     position: relative;
-    background-image: url('image/fil.png');
+    background-image: url('image/fil.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     overflow: hidden;
@@ -51,7 +51,7 @@
             <div class="row justify-content-center align-items-center h-100">
                 <div class="col-md-6">
                     <div class="form-container">
-                        <form id="registrationForm">
+                        <form id="registrationForm" method="get" action="submit_form.php">
                         <h1>Residents Registration Form</h1>
                         <h2>Personal Information</h2>
                             <label for="fullName"><b>Full Name:</b></label>
@@ -106,47 +106,21 @@
         </div>
     </div>
     <script>
-        function submitForm() {
-            // Here you can handle the form submission, such as sending data to a server or showing a confirmation message
-            alert("Form submitted successfully!");
-        }
+        document.getElementById("registrationForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent default form submission
 
-        document.querySelector(".submit-button").addEventListener("click", function() {
-            var form = document.getElementById("registrationForm");
+            var form = event.target;
             if (form.checkValidity()) {
+                // Form is valid, proceed with submission
                 alert("Form submitted successfully!");
                 // You can also submit the form to a backend server using AJAX here
             } else {
+                // Form is invalid, display error message
                 document.getElementById("errorMessage").innerText = "Please fill in all required fields and acknowledge the information.";
                 console.log("Form submission failed. Please check the form for errors.");
             }
         });
-
-        // Get the input element
-        var numberOfMembersInput = document.getElementById("numberOfMembers");
-
-        // Add event listener for input event
-        numberOfMembersInput.addEventListener("input", function() {
-            // Get the input value
-            var input = this.value;
-
-            // Validate if input is a number and between 0 and 99
-            if (/^\d+$/.test(input)) { // Check if input contains only digits
-                var number = parseInt(input);
-                if (number >= 0 && number <= 99) {
-                    // Input is valid
-                    this.setCustomValidity(""); // Clear any previous validation message
-                } else {
-                    // Input is invalid, show custom validation message
-                    this.setCustomValidity("Please enter a number between 0 and 99");
-                }
-            } else {
-                // Input is invalid, show custom validation message
-                this.setCustomValidity("Please enter a valid number");
-            }
-        });
     </script>
-
 </body>
 </html>
        
