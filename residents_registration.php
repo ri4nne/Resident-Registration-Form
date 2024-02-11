@@ -28,27 +28,27 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     $dbname = "residents_registration"; // Replace with your database name
 
     // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
+    $conn = new mysqli("localhost", "root"," ", "residents_registration");
 
     // Check connection
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    // SQL to insert data into the database
+    // Prepare and bind SQL statement with parameters
     $sql = "INSERT INTO form_submissions (full_name, address, phone_number, email_address, number_of_members, emergency_contact_name, occupation, communication, acknowledged) 
-            VALUES ('$fullName', '$address', '$phoneNumber', '$emailAddress', '$numberOfMembers', '$emergencyContactName', '$occupation', '$communication', '$acknowledgeCheckbox')";
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ssssissss", $fullName, $address, $phoneNumber, $emailAddress, $numberOfMembers, $emergencyContactName, $occupation, $communication, $acknowledgeCheckbox);
 
-    // Output SQL query for debugging
-    echo "SQL Query:";
-    var_dump($sql);
-
-    if ($conn->query($sql) === TRUE) {
-        echo "New record created successfully";
+    // Execute the statement
+    if ($stmt->execute()) {
+    echo "New record created successfully";
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+    echo "Error: " . $sql . "<br>" . $conn->error;
     }
 
+    $stmt->close();
     $conn->close();
 } else {
     echo "No data received from the form.";
