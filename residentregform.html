@@ -43,6 +43,17 @@
     width: fit-content;
     text-align: center;
     }
+
+    .radio-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .radio-container label {
+        margin-right: 50px; 
+        margin-left: 20px;
+    }
     </style>
 </head>
 <body>
@@ -68,14 +79,12 @@
 
                             <br>
                             <label for="emailAddress"><b>Email Address:</b></label>
-                            <input type="email" name="emailAddress" id="emailAddress" placeholder="Email Address" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
-                            <small>Format: example@example.com</small>
+                            <input type="email" name="emailAddress" id="emailAddress" placeholder="Email Address" required>
 
-                                
                             <br>
                             <h2>Household Information</h2>
                             <label for="numberOfMembers"><b>Number of Members:</b></label>
-                            <input type="number" name="numberOfMembers" id="numberOfMembers" placeholder="Number of Members" required>
+                            <input type="number" name="numberOfMembers" id="numberOfMembers" placeholder="Number of Members" min="1" max="99" required>
                                 
                             <br> 
                             <h2>Emergency Contact Information</h2>
@@ -88,9 +97,26 @@
                             <input type="text" name="occupation" id="occupation" placeholder="Occupation" required>
 
                             <br>
-                            <label for="communication"><b>Preferred Method of Communication [Email, Phone, Mail, etc.]:</b></label>
-                            <input type="text" name="communication" id="communication" placeholder="Communication" required>
+                            <label for="communication"><b>Preferred Method of Communication:</b></label>
+                            <select name="communication" id="communication" required>
+                                <option value="">Select Communication Method</option>
+                                <option value="Email">Email</option>
+                                <option value="Phone">Phone</option>
+                                <option value="Mail">Mail</option>
+                                <!-- Add more options as needed -->
+                            </select>
                             
+                            <br>
+                            <label><b>Preferred Contact Time:</b></label><br>
+                            <div class="radio-container">
+                                <input type="radio" id="morning" name="contactTime" value="morning">
+                                <label for="morning">Morning</label><br>
+                                <input type="radio" id="afternoon" name="contactTime" value="afternoon">
+                                <label for="afternoon">Afternoon</label><br>
+                                <input type="radio" id="evening" name="contactTime" value="evening">
+                                <label for="evening">Evening</label><br>
+                            </div>
+
                             <div class="acknowledgment">
                                 <input type="checkbox" id="acknowledgeCheckbox" required>
                                 <label for="acknowledgeCheckbox">I hereby acknowledge that the information provided above is accurate to the best of my knowledge. I understand that this information will be used by the HOA for communication and administrative purposes.</label>
@@ -98,7 +124,6 @@
                             <div class="mb-3"></div>
                             <button type="submit" class="btn btn-primary submit-button" id="submitButton">SUBMIT FORM</button>
                             <div id="errorMessage" style="color: red;"></div>
-                        </form>
                         </form>
                     </div>
                 </div>
